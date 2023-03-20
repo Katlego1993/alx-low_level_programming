@@ -1,12 +1,11 @@
-#include <stdio.h>
 #include <unistd.h>
 /**
- * main - A C program that prints a line to the standrad erro
- * Return 1 (Sucess)
+ * main - Entry point
+ * Return: always 0
  */
 int main(void)
 {
-	fput("andthat piece of art is useful\" - Dora Korpar, 2015-10-19\n", stdout);
-        return (1);
+	write(2, "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n", 59);
+	return (1);
 }
 
