@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
-*main - main point
-*return: always 0 (success)
+* main - main point
+* Return: always 0 (success)
 */
 int main(void)
 {
