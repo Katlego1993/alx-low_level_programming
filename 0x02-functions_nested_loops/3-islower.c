@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _islower - Shows 1 if the input is a
+ * _islower - Shows 1 if the input is c
  * lowercase character. Another cases, shows
  * 0
  *
