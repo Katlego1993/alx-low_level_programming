@@ -3,18 +3,15 @@
  * _abs - Computes the absolute value
  *  of an integer
  *
- *  @i: input number as an integer
+ *  @a: parameter to be checked
  *
- *  Return: absolute value
+ *  Return: always 0
  */
-int _abs(int i);
+int _abs(int a)
 {
-	if (i >= 0)
-	{
-		return (i);
-	}
-	else
-	{
-		return (i * -1);
-	}
+	if (a < 0)
+		a = -(a);
+	else if (a >= 0)
+		a = a;
+	return (a);
 }
