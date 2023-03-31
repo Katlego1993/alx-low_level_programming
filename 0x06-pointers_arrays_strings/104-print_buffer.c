@@ -19,7 +19,7 @@ return;
 }
 while (o < size)
 {
-j = size – 0 < 10 ? size – 0 : 10;
+j = size – 0 < 10 ? size – 0 : 10; 
 printf("%08x: ", o);
 for (i = 0; i < 10; i++)
 {
