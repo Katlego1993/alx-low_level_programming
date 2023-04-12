@@ -8,7 +8,8 @@
 * Return: pointer to the created matrix (Success)
 * or NULL (Error)
 */
-int **alloc_grid(int width, int height);
+int **alloc_grid(int width, int height)
+
 {
 int **array;
 int i, j;
@@ -22,6 +23,7 @@ if (array == NULL)
 return (NULL);
 for (i = 0; i < height; i++)
 {
+array[i] = (int *) malloc(sizeof(int) * width);
 if (array[i] == NULL)
 {
 free(array);
