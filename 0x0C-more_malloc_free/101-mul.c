@@ -114,6 +114,7 @@ if (j >= 0)
 add = ((argv[1][i] - '0') * (argv[2][i] - '0')) + (nout[k] - '0') + add1;
 add1 = add / 10, nout[k] = (add % 10) + '0';
 }
+}
 printf("%s\n", nout);
 return (0);
 }
