@@ -111,7 +111,7 @@ k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = add1 = 0;
 }
 if (j >= 0)
 {
-add = ((argv[1][i] - '0') * (argv[2][i] - '0')) + (nout[k] - '0') + add1;
+add = ((argv[1][i] - '0') * (argv[2][j] - '0')) + (nout[k] - '0') + add1;
 add1 = add / 10, nout[k] = (add % 10) + '0';
 }
 }
