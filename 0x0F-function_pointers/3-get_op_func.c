@@ -4,7 +4,6 @@
  * get_op_func - selects the correct function to perform
  * the operation asked by the user
  * @s: The operator passed as argument
- * @strcmp: value
  * Return: A pointer to the functon correspnding
  * to the operator given as a parameter
  */
@@ -20,11 +19,7 @@ op_t ops[] = {
 };
 int i = 0;
 
-while (i < 5)
-{
-if (strcmp(s, ops[i].op) == 0)
-return (ops[i].f);
+while (ops[i].op != NULL && *(ops[i].op) != *s)
 i++;
-}
-return (0);
+return (ops[i].f);
 }
