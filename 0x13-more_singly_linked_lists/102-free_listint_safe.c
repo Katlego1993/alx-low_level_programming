@@ -24,6 +24,7 @@ free(list);
 exit(98);
 }
 for (i = 0; i < size - 1; i++)
+newlist[i] = list[i];
 newlist[i] = new;
 free(list);
 return (newlist);
