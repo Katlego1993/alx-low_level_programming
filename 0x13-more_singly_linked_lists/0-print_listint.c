@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
-* print_listint - pritnts all list of elements
+* print_listint - prints all list of elements
 *
 * @h :Head of link list node
 *
@@ -10,13 +10,13 @@
 */
 size_t print_listint(const listint_t *h)
 {
-size_t count = 0;
+size_t c = 0;
 
 while (h != NULL)
 {
 printf("%d\n", h->n);
 h = h->next;
-count++;
+c++;
 }
-return (count);
+return (c);
 }
