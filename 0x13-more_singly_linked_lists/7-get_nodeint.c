@@ -1,23 +1,20 @@
 #include "lists.h"
-
 /**
- * *get_nodeint_at_index - the index linked list note
- * @head: pointer of the note
+ * get_nodeint_at_index - returns the node of a linked inde
+ * @head: first node in the linked list
  * @index: index of the node
  *
- * Return : pointer of index
+ * Return: pointer to the node
  */
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
-unsigned int o;
+unsigned int k = 0;
+listint_t *t = head;
 
-if (head == NULL)
-return (NULL);
-for (o = 0; o < index; o++)
+while (t && k < index)
 {
-head = head->next;
-if (head == NULL)
-return (NULL);
+t = t->next;
+k++;
 }
-return (head);
+return (t ? t : NULL);
 }
