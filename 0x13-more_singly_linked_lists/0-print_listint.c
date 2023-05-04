@@ -3,10 +3,9 @@
 
 /**
  * print_listint - pritnts all list of elements
- *
  * @h :Head of link list node
  *
- * Return: node number
+ * Return: node number in the list
 */
 size_t print_listint(const listint_t *h)
 {
