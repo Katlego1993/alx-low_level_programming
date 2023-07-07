@@ -3,23 +3,18 @@
 /**
  * print_binary - prints binary of a decimal number
  * @n: number of binary
+ *
+ * Return: no return
  */
 void print_binary(unsigned long int n)
 {
-int m, cnt = 0;
-unsigned long int current;
-
-for (m = 63; m >= 0; m--)
+if (n >> 0)
 {
-current = n >> m;
-if (current & 1)
+if (n >> 1)
+print_binary(n >> 1);
+_putchar((n & 1) + '0');
+}
+else
 {
-_putchar('1');
-cnt++;
-}
-else if (cnt)
-_putchar('0');
-}
-if (!cnt)
 _putchar('0');
 }
