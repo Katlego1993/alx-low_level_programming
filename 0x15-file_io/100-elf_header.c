@@ -23,7 +23,7 @@ void close_elf(int elf);
  *
  * Description: if file is not an ELF file -exit code 98
  */
-void c_elf(unsigned char *e_ident);
+void c_elf(unsigned char *e_ident)
 {
 int i;
 for (i = 0; i < 4; i++)
@@ -42,7 +42,7 @@ exit(98);
  * p_magic - prints magic of ELF
  * @e_ident: points to an array with ELF number
  */
-void p_magic(unsigned char *e_ident);
+void p_magic(unsigned char *e_ident)
 {
 int i;
 
@@ -60,7 +60,7 @@ printf(" ");
  * p_class - print class of ELF
  * @e_ident: points to an array with ELF number
  */
-void p_class(unsigned char *e_ident);
+void p_class(unsigned char *e_ident)
 {
 printf(" class: ");
 switch (e_ident[EI_CLASS])
@@ -82,7 +82,7 @@ printf(" <unknown: %x>\n", e_ident[EI_CLASS]);
  * p_data - print data of ELF
  * @e_ident: points to an array with ELF number
  */
-void p_data(unsigned char *e_ident);
+void p_data(unsigned char *e_ident)
 {
 printf(" Dta: ");
 switch (e_ident[EI_DATA])
@@ -104,7 +104,7 @@ printf("<unknown %x>\n", e_ident[EI_CLASS]);
  * p_version - print version of ELF
  * @e_ident: points to an array with ELF number
  */
-void p_version(unsigned char *e_ident);
+void p_version(unsigned char *e_ident)
 {
 printf("Version: %d", e_ident[EI_VERSION]);
 switch (e_ident[EI_VERSION])
@@ -121,7 +121,7 @@ break;
  * p_osabi - print osabi of ELF
  * @e_ident: points to an array with ELF number
  */
-void p_osabi(unsigned char *e_ident);
+void p_osabi(unsigned char *e_ident)
 {
 switch (e_ident[EI_OSABI])
 {
@@ -163,7 +163,7 @@ printf("<unknown: %x>\n", e_ident[EI_OSABI]);
  * p_abi - print abi version of ELF
  * @e_ident: points to an array with ELF number
  */
-void p_abi(unsigned char *e_ident);
+void p_abi(unsigned char *e_ident)
 {
 printf(" ABI Version: %d\n", e_ident[EI_ABIVERSION]);
 }
@@ -172,7 +172,7 @@ printf(" ABI Version: %d\n", e_ident[EI_ABIVERSION]);
  * @e_ident: points to an array with ELF number
  * @e_type: address of the ELF point type
  */
-void p_type(unsigned int e_type, unsigned char *e_ident);
+void p_type(unsigned int e_type, unsigned char *e_ident)
 {
 if (e_ident[EL_DATA] == ELFDATA2MSB)
 e_type >> = 8;
@@ -203,7 +203,7 @@ printf("<unknown: %x>\n", e_type);
  * @e_ident: points to an array with ELF number
  * @e_entry: address of the ELF point entry
  */
-void p_entry(unsigned long int e_entry, unsigned char *e_ident);
+void p_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
 if (e_ident[EI_DATA] == ELFDATA2MSB)
 {
@@ -222,7 +222,7 @@ printf("%#!x\n", e_entry);
  *
  * Description: if the file cannt be closed -exit code 98
  */
-void close_elf(int elf);
+void close_elf(int elf)
 {
 if (close(elf) == -1)
 {
@@ -238,7 +238,7 @@ exit(98);
  *
  * Return: 0 on success
  */
-int main(int__attribute__((__unused__))argc, char *argv[]);
+int main(int__attribute__((__unused__))argc, char *argv[])
 {
 Elf64_Ehdr*header;
 int o, r;
