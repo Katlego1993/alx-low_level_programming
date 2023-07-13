@@ -6,27 +6,27 @@
 
 /**
  * _strncmp - compare two strings
- * @s1: the first string
- * @s2: the second string
- * @n: the max number of bytes to compare
+ * @string1: the first string
+ * @string2: the second string
+ * @num: the max number of bytes to compare
  *
  * Return: 0 if the first n bytes of s1 and s2 are equal, otherwise non-zero
  */
-int _strncmp(const char *s1, const char *s2, size_t n)
+int _strncmp(const char *string1, const char *string2, size_t num)
 {
-	for ( ; n && *s1 && *s2; --n, ++s1, ++s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-	}
-	if (n)
-	{
-		if (*s1)
-			return (1);
-		if (*s2)
-			return (-1);
-	}
-	return (0);
+for ( ; num && *string1 && *string2; --num, ++string1, ++string2)
+{
+if (*string1 != *string2)
+return (*string1 - *string2);
+}
+if (num)
+{
+if (*string1)
+return (1);
+if (*string2)
+return (-1);
+}
+return (0);
 }
 
 /**
@@ -64,7 +64,7 @@ void p_magic(const unsigned char *buf)
 {
 unsigned int num;
 if (_strncmp((const char *) buf, ELFMAG, 4))
-{  
+{
 write(STDERR_FILENO, "Error: Not an ELF file\n", 23);
 exit(98);
 }
@@ -212,7 +212,7 @@ printf("<unknown: %x>\n", t);
 }
 
 /**
- * P_entry - print entry point of ELF
+ * p_entry - print entry point of ELF
  * @buf: string containing the entry point ELF
  * @m: mode number (32 or 64)
  * @e: big endian if non-zero
@@ -237,7 +237,7 @@ while (size && !*(--buf))
 --size;
 printf("%x", *buf & 0xff);
 while (--size > 0)
-printf("%02x", *(--buf) & 0xff);
+printf("%02x", *(--buf) &0xff);
 }
 printf("\n");
 }
