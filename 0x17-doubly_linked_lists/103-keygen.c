@@ -3,11 +3,11 @@
 #include <string.h>
 
 /**
- * main - print crackme5 password
- * @argc: number of arguments
- * @argv: array of arguments
+ * main - Generates and prints passwords for the crackme5 executable.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: 0
+ * Return: Always 0.
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
@@ -33,7 +33,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	for (a = 0; a < len; a++)
 	{
 		if (argv[1][a] > tmp)
-		       tmp = argv[1][a];
+			tmp = argv[1][a];
 	}
 	srand(tmp ^ 14);
 	password[3] = codex[rand() & 63];
@@ -51,6 +51,3 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	printf("%s", password);
 	return (0);
 }
-
-
-
