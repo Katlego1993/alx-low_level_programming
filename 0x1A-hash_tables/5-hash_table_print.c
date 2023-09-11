@@ -1,8 +1,10 @@
 #include "hash_tables.h"
+
 /**
- * hash_table_print - prints a hash table
- * @ht: hast table pointer to print
- * Description: key/value pairs are printed in the order they appear in array of hash table
+ * hash_table_print - Print whole the hash table.
+ * @ht: Hash table.
+ *
+ * Return: Void.
  */
 void hash_table_print(const hash_table_t *ht)
 {
