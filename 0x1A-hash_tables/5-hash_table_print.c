@@ -1,22 +1,22 @@
 #include "hash_tables.h"
 
 /**
- * hash_table_print - Print whole the hash table.
- * @ht: Hash table.
+ * hash_table_print - Print a hash table.
+ * @ht: Hash table pointer.
  *
  * Return: Void.
  */
 void hash_table_print(const hash_table_t *ht)
 {
-	unsigned long int i, flag = 0;
+	unsigned long int k, flag = 0;
 	hash_node_t *current;
 
 	if (ht == NULL)
 		return;
 	putchar('{');
-	for (i = 0; i < ht->size; i++)
+	for (k = 0; k < ht->size; k++)
 	{
-		current = ht->array[i];
+		current = ht->array[k];
 		if (current != NULL)
 		{
 			while (current != NULL)
