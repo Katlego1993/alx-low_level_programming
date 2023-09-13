@@ -9,92 +9,43 @@
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int idx;
-	char *str;
-	hash_node_t *node;
+	hash_node_t *new;
+	char *value_copy;
+	unsigned long int index, i;
 
-	if (!ht || !key)
+	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 
-	idx = key_index((unsigned char *)key, ht->size);
-	if (value)
-		str = strdup(value);
-	else
-		str = NULL;
+	value_copy = strdup(value);
+	if (value_copy == NULL)
+		return (0);
 
-	node = ht->array[idx];
-
-	if (!node)
-		node = new_node(NULL);
-
-	if (node->key)
+	index = key_index((const unsigned char *)key, ht->size);
+	for (i = index; ht->array[i]; i++)
 	{
-		ht->array[idx] = update_node(node, key, str);
-		return (1);
-	}
-	node->key = strdup(key);
-	node->value = str;
-	node->next = NULL;
-
-	ht->array[idx] = node;
-	return (1);
-}
-
-/**
- * update_node - update or added a node if one already exists
- *
- * @node: pointer to a node the exist
- * @key: key
- * @value: value to update/create node with.
- *
- * Return: pointer to head of a list
- */
-hash_node_t *update_node(hash_node_t *node, const char *key, char *value)
-{
-	hash_node_t *tmp = node;
-
-	while (tmp)
-	{
-
-		if (!strcmp(key, tmp->key))
+		if (strcmp(ht->array[i]->key, key) == 0)
 		{
-			free(tmp->value);
-			tmp->value = value;
-			return (node);
+			free(ht->array[i]->value);
+			ht->array[i]->value = value_copy;
+			return (1);
 		}
-		tmp = tmp->next;
 	}
 
-	tmp = node;
-	node = new_node(node);
-	if (!node)
+	new = malloc(sizeof(hash_node_t));
+	if (new == NULL)
 	{
-		node = tmp;
-		return (node);
+		free(value_copy);
+		return (0);
 	}
-	node->key = strdup(key);
-	node->value = value;
-	return (node);
+	new->key = strdup(key);
+	if (new->key == NULL)
+	{
+		free(new);
+		return (0);
+	}
+	new->value = value_copy;
+	new->next = ht->array[index];
+	ht->array[index] = new;
 
-}
-
-/**
- * new_node - create a new node
- * @c_node: current node to add add at the end.
- *
- * Return: a point to the new node.
- */
-hash_node_t *new_node(hash_node_t *c_node)
-{
-	hash_node_t *node;
-
-	node = malloc(sizeof(hash_node_t));
-	if (!node)
-		return (NULL);
-	node->key = NULL;
-	node->value = NULL;
-	node->next = c_node;
-
-	return (node);
-}
-	
+	return (1);
+}	
