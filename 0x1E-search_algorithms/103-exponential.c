@@ -11,32 +11,31 @@
   * Return: If the value is not present or the array is NULL, -1.
   *         Otherwise, the index where the value is located.
   *
-  * Description: Prints the [sub]array being searched after each change.
-  */
-int binary_search(int *array, size_t size, int value)
+  * Description: Prints the [sub]array being searched after each change
+*/
+int _binary_search(int *array, size_t left, size_t right, int value)
 {
-	size_t k = 0;
-	int *a = array;
+	size_t i;
 
-	if (!array)
+	if (array == NULL)
 		return (-1);
 
-	while (size)
+	while (right >= left)
 	{
-		for (k = 0, printf("Searching in array: "); k < size; k++)
-			printf("%d%s", a[k], k + 1 == size ? "\n" : ", ");
+		printf("Searching in array: ");
+		for (i = left; i < right; i++)
+			printf("%d, ", array[i]);
+		printf("%d\n", array[i]);
 
-		k = (size - 1) / 2;
-		if (a[k] == value)
-			return ((a - array) + k);
-		else if (a[k] > value)
-			size = k;
+		i = left + (right - left) / 2;
+		if (array[i] == value)
+			return (i);
+		if (array[i] > value)
+			right = i - 1;
 		else
-		{
-			a += (k + 1);
-			size -= (k + 1);
-		}
+			left = i + 1;
 	}
+
 	return (-1);
 }
 
@@ -54,21 +53,18 @@ int binary_search(int *array, size_t size, int value)
   */
 int exponential_search(int *array, size_t size, int value)
 {
-	size_t k = 1, newsize = 0;
-	int ret;
+	size_t i = 0, right;
 
-	if (!array || !size)
+	if (array == NULL)
 		return (-1);
 
-	while (k < size && array[k] < value)
+	if (array[0] != value)
 	{
-		printf("Value checked array[%lu] = [%d]\n", k, array[k]);
-		k <<= 1;
+		for (i = 1; i < size && array[i] <= value; i = i * 2)
+			printf("Value checked array[%ld] = [%d]\n", i, array[i]);
 	}
-	newsize = (k >= size ? size : k + 1) - (k >> 1);
-	k >>= 1;
-	printf("Value found between indexes [%lu] and [%lu]\n",
-			k, k << 1 >= size ? size - 1 : k << 1);
-	ret = binary_search(array + k, newsize, value);
-	return (ret == -1 ? ret : ret + (int)k);
+
+	right = i < size ? i : size - 1;
+	printf("Value found between indexes [%ld] and [%ld]\n", i / 2, right);
+	return (_binary_search(array, i / 2, right, value));
 }
