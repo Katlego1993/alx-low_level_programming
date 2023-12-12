@@ -13,25 +13,31 @@
   *
   * Description: Prints the [sub]array being searched after each change.
   */
-int exponential_search(int *array, size_t size, int value)
+int binary_search(int *array, size_t size, int value)
 {
-	size_t i = 1, newsize = 0;
-	int ret;
+	size_t k = 0;
+	int *a = array;
 
-	if (!array || !size)
+	if (!array)
 		return (-1);
 
-	while (i < size && array[i] < value)
+	while (size)
 	{
-		printf("Value checked array[%lu] = [%d]\n", i, array[i]);
-		i <<= 1;
+		for (k = 0, printf("Searching in array: "); k < size; k++)
+			printf("%d%s", a[k], k + 1 == size ? "\n" : ", ");
+
+		k = (size - 1) / 2;
+		if (a[k] == value)
+			return ((a - array) + k);
+		else if (a[k] > value)
+			size = k;
+		else
+		{
+			a += (k + 1);
+			size -= (k + 1);
+		}
 	}
-	newsize = (i >= size ? size : i + 1) - (i >> 1);
-	i >>= 1;
-	printf("Value found between indexes [%lu] and [%lu]\n",
-			i, i << 1 >= size ? size - 1 : i << 1);
-	ret = binary_search(array + i, newsize, value);
-	return (ret == -1 ? ret : ret + (int)i);
+	return (-1);
 }
 
 /**
@@ -46,29 +52,23 @@ int exponential_search(int *array, size_t size, int value)
   *
   * Description: Prints a value every time it is compared in the array.
   */
-int binary_search(int *array, size_t size, int value)
+int exponential_search(int *array, size_t size, int value)
 {
-	size_t i = 0;
-	int *a = array;
+	size_t k = 1, newsize = 0;
+	int ret;
 
-	if (!array)
+	if (!array || !size)
 		return (-1);
 
-	while (size)
+	while (k < size && array[k] < value)
 	{
-		for (i = 0, printf("Searching in array: "); i < size; i++)
-			printf("%d%s", a[i], i + 1 == size ? "\n" : ", ");
-
-		i = (size - 1) / 2;
-		if (a[i] == value)
-			return ((a - array) + i);
-		else if (a[i] > value)
-			size = i;
-		else
-		{
-			a += (i + 1);
-			size -= (i + 1);
-		}
+		printf("Value checked array[%lu] = [%d]\n", k, array[k]);
+		k <<= 1;
 	}
-	return (-1);
+	newsize = (k >= size ? size : k + 1) - (k >> 1);
+	k >>= 1;
+	printf("Value found between indexes [%lu] and [%lu]\n",
+			k, k << 1 >= size ? size - 1 : k << 1);
+	ret = binary_search(array + k, newsize, value);
+	return (ret == -1 ? ret : ret + (int)k);
 }
